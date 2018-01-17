@@ -6,8 +6,9 @@ Class Color {
 	public $green;
 	public $blue;
 	static $verbose = false;
+	const WHITE = 0xFFFFFF;
 
-	function __construct( array $kwargs ) 
+	function __construct( array $kwargs )
 	{
 		if (array_key_exists( 'rgb', $kwargs ))
 		{
@@ -17,8 +18,8 @@ Class Color {
 			$this->blue = ($rgb / pow(256, 0) % 256);
 		}
 
-		else if ( 	(isset($kwargs['red'])) && 
-					(isset($kwargs['green'])) && 
+		else if ( 	(isset($kwargs['red'])) &&
+					(isset($kwargs['green'])) &&
 					(isset( $kwargs['blue']))
 				)
 		{
@@ -31,7 +32,7 @@ Class Color {
 		{
 		$chaine = "Color( red: %3d, green: %3d, blue: %3d ) constructed." . PHP_EOL;
     	 printf($chaine, $this->red, $this->green, $this->blue);
-			
+
 		}
 	 }
 	 public function add($Color)
@@ -59,19 +60,16 @@ Class Color {
 	 	$newColor = new Color(array( 'red' => $newR, 'green' => $newG, 'blue' => $newB));
 	 	return ($newColor);
 	 }
-	 
+
 
 	static function doc()
 	{
-	$file    = fopen( "Color.doc.txt", "r" );
-	$content = "";
-		while(!feof($file)) 
-		{
-		 $content .= fgets($file, 4096);
-		}
-	fclose($file);
-
-	echo($content . PHP_EOL);
+		$file = fopen( "Color.doc.txt", "r" );
+		$content = "";
+		while(!feof($file))
+			$content .= fgets($file, 4096);
+		fclose($file);
+		echo(PHP_EOL . $content . PHP_EOL);
 	}
 
     public function __toString()
@@ -80,7 +78,7 @@ Class Color {
     	return vsprintf($chaine, array($this->red, $this->green, $this->blue));
     }
 
-    function __destruct() 
+    function __destruct()
     {
     	if (self::$verbose == true)
 		{
@@ -92,5 +90,3 @@ Class Color {
 }
 
 ?>
-
-
