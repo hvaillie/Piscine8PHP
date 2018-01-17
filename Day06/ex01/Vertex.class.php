@@ -19,13 +19,13 @@
 			if (isset($param['w']) && !empty($param['w']))
 				$this->_w = $param['w'];
 			if (isset($param['color']) && !empty($param['color']) && $param['color'] instanceof Color)
-				$this->_color = $param['color'];
+				$this->_Color = $param['color'];
 			else
-				$this->_color = new Color(array('rgb' => Color::WHITE));
+				$this->_Color = new Color(array('rgb' => Color::WHITE));
 			if (Self::$verbose)
 				printf("Vertex( x: %0.2f, y: %0.2f, z:%0.2f, w:%0.2f, Color( red: %3d, green: %3d, blue: %3d ) ) constructed\n",
 					$this->_x, $this->_y, $this->_z, $this->_w,
-					$this->_color->red, $this->_color->green, $this->_color->blue);
+					$this->_Color->red, $this->_Color->green, $this->_Color->blue);
 		}
 
 		function __destruct()
@@ -33,14 +33,17 @@
 			if (Self::$verbose)
 				printf("Vertex( x: %0.2f, y: %0.2f, z:%0.2f, w:%0.2f, Color( red: %3d, green: %3d, blue: %3d ) ) destructed\n",
 					$this->_x, $this->_y, $this->_z, $this->_w,
-					$this->_color->red, $this->_color->green, $this->_color->blue);
+					$this->_Color->red, $this->_Color->green, $this->_Color->blue);
 		}
 
 		function __toString()
 		{
 			if (Self::$verbose)
-				return (vsprintf("Vertex( x: %0.2f, y: %0.2f, z:%0.2f, w:%0.2f, Color( red: %3d, green: %3d, blue: %3d ) )", array($this->_x, $this->_y, $this->_z, $this->_w, $this->_color->red, $this->_color->green, $this->_color->blue)));
-			return (vsprintf("Vertex( x: %0.2f, y: %0.2f, z:%0.2f, w:%0.2f )", array($this->_x, $this->_y, $this->_z, $this->_w)));
+				return (vsprintf("Vertex( x: %0.2f, y: %0.2f, z:%0.2f, w:%0.2f, Color( red: %3d, green: %3d, blue: %3d ) )",
+				 		array($this->_x, $this->_y, $this->_z, $this->_w,
+							$this->_Color->red, $this->_Color->green, $this->_Color->blue)));
+			return (vsprintf("Vertex( x: %0.2f, y: %0.2f, z:%0.2f, w:%0.2f )",
+			 			array($this->_x, $this->_y, $this->_z, $this->_w)));
 		}
 
 		static function doc()
@@ -65,6 +68,6 @@
 		public function getW() {return $this->_w;}
 		public function setW($w) {$this->_w = $w;}
 
-		public function getColor() {return $this->_color;}
-		public function setColor($color) {$this->_color = $color;}
+		public function getColor() {return $this->_Color;}
+		public function setColor($Color) {$this->_Color = $Color;}
 	}
