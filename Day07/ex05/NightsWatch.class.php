@@ -3,18 +3,20 @@
 class NightsWatch implements IFighter
 {
 
-	private $soldat = array();
+	private $soldats = array();
 
-	public function recruit($s)
+	public function recruit($soldat)
 	{
-		if (in_array("IFighter", class_implements($s)))
-			$this->soldat[] = $s;
+		if (in_array("IFighter", class_implements($soldat)))
+			$this->soldats[] = $soldat;
 	}
 
 	function fight() {
-		foreach ($this->soldat as $s) {
-			$s->fight();
+		foreach ($this->soldats as $soldat) {
+			$soldat->fight();
 		}
 	}
 
 }
+
+?>
