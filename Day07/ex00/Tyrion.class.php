@@ -13,3 +13,5 @@ Class Tyrion extends Lannister
 		print("Short");
 	}
 }
+
+?>
