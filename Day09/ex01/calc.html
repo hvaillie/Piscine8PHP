@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Calc</title>
+    <style>
+		h1 {
+			text-align:center;
+			display:block;
+			color: #090;
+		}
+		div {
+			text-align:center;
+			display:block;
+			color: #090;
+		}
+    </style>
+    <script>
+		var nb1;
+        var nb2;
+		var op;
+		var form;
+	
+	     window.onload = function () {
+            form = document.querySelector("#form");
+            nb1 = document.querySelector("#nb1");
+//			nb1.addEventListener("blur", function() {checkNb('nb1');});
+            nb2 = document.querySelector("#nb2");
+//			nb2.addEventListener("blur", function() {checkNb('nb2');});
+            op = document.querySelector("#op");
+            form.addEventListener("submit", submit);
+            setInterval("alert('Please, use me...')", 30000)
+        }
+		
+		function checkNb(nbId) {
+			var elem = document.getElementById(nbId);
+			var nb = elem.value;
+			if (!(nb == parseInt(nb) && nb >= 0)) {
+				alert ('Error :(');
+				return false;
+			}
+			return true;			
+		}
+		
+		function submit(event) {
+			var result;
+			event.preventDefault()
+			if (!checkNb('nb1') || !checkNb('nb2'))
+				return false;
+			if (nb2.value == 0 && (op.value == '/' || op.value == '%'))
+				result = 'It’s over 9000!';
+			else
+				result = eval(nb1.value + op.value + nb2.value);
+			console.log(result);
+			alert(result);
+		}
+		
+    </script>
+</head>
+<body>
+	<h1>Calculette</h1>
+	<form action="" id="form">
+		<div class="nb">
+			<input type="text" id="nb1"/>
+		</div>
+		<div class="op">
+			<select id="op">
+				<option value="+" selected>+</option> 
+				<option value="-" >-</option>
+				<option value="*">*</option>
+				<option value="/">/</option>
+				<option value="%">%</option>
+			</select>
+		</div>
+		<div class="nb">
+			<input type="text" id="nb2"/>
+		</div>
+		<div class="button">
+			<input type="submit" id="submit" value="Try me!"/>
+		</div>		
+		
+	</form>
+</body>
+</html>
