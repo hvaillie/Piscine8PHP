@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Calc</title>
+	<script
+		src="https://code.jquery.com/jquery-3.3.0.js"
+		integrity="sha256-TFWSuDJt6kS+huV+vVlyV1jM3dwGdeNWqezhTxXB/X8="
+		crossorigin="anonymous">
+	</script>
+	<style>
+		h1 {
+			text-align:center;
+			display:block;
+			color: #090;
+		}
+		div {
+			text-align:center;
+			display:block;
+			color: #090;
+		}
+		.calc {
+			background-color: aliceblue;
+			width: 175px;
+			margin: auto;
+			height: 240px;
+			padding: 20px;
+		}
+		input[type=text] {
+			width: 100%;
+			padding: 12px 20px;
+			margin: 14px 0;
+			box-sizing: border-box;
+			background-color: #3CBC8D;
+			color: white;
+			font-size: 1.25em;
+			border-radius: 12px;
+		}
+		#nb1, #nb2 {
+			text-align: right;
+		}
+		select {
+			width: 100%;
+			padding: 12px 20px;
+			border: none;
+			border-radius: 4px;
+			background-color: #3CBC8D;
+			color: white;
+			font-size: 1.25em;
+		}
+		.op {
+			text-align: center;
+		}
+		input[type=button], input[type=submit], input[type=reset] {
+			background-color: cornflowerblue;
+			border: none;
+			color: white;
+			padding: 16px 32px;
+			text-decoration: none;
+			margin: 4px 2px;
+			cursor: pointer;
+			font-size: 1.25em;
+		}
+	</style>
+	<script>
+		var nb1;
+		var nb2;
+		var op;
+		var form;
+
+		$(document).ready(function() {
+			form = $("#form");
+			nb1 = $("#nb1");
+			nb2 = $("#nb2");
+			op = $("#op");
+			form.submit(submit);
+			setInterval("alert('Please, use me...')", 30000);
+ 	   })
+
+		function checkNb(nbId) {
+			var nb = $( "#"+nbId ).val();
+			if (!(nb == parseInt(nb) && nb >= 0)) {
+				alert ('Error :(');
+				return false;
+			}
+			return true;
+		}
+
+		function submit(event) {
+			var result;
+			event.preventDefault()
+			if (!checkNb('nb1') || !checkNb('nb2'))
+				return false;
+			if (nb2.val() == 0 && (op.val() == '/' || op.val() == '%'))
+				result = 'It’s over 9000!';
+			else
+				result = eval(nb1.val() + op.val() + nb2.val());
+			console.log(result);
+			alert(result);
+		}
+
+    </script>
+</head>
+<body>
+	<h1>Calculette</h1>
+	<div class="calc">
+		<form action="" id="form">
+			<div class="nb">
+				<input type="text" id="nb1"/>
+			</div>
+			<div class="op">
+				<select id="op">
+					<option class="op" value="+" selected>plus</option>
+					<option class="op" value="-" >moins</option>
+					<option class="op" value="*">multiplié par</option>
+					<option class="op" value="/">divisé par</option>
+					<option class="op" value="%">modulo</option>
+				</select>
+			</div>
+			<div class="nb">
+				<input type="text" id="nb2"/>
+			</div>
+			<div class="button">
+				<input type="submit" id="submit" value="Try me!"/>
+			</div>
+		</form>
+	</div>
+</body>
+</html>
